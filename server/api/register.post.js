@@ -3,10 +3,10 @@ import createUser from "../db/createUser";
 
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);
-  let { username, name, password, email } = body;
+  let { name, password, email, userName } = body;
   let findUser = await prisma.user.findFirst({
     where: {
-      AND: [{ username }, { email }],
+      AND: [{ email }],
     },
   });
   if (findUser) {
@@ -15,16 +15,19 @@ export default defineEventHandler(async (event) => {
       createError({ status: 500, statusMessage: "user has already exist" })
     );
   }
-  let createUser = await prisma.user.create({
-    data: {
-      username,
+  try {
+    let createdUser = await createUser({
       name,
+      userName,
       password,
       email,
       profileImage: "https://picsum.photos/200/200",
-    },
-  });
-  return {
-    createUser,
-  };
+    });
+    return {
+      ...createdUser,
+      password: "security ",
+    };
+  } catch (err) {
+    sendError(event, createError({ status: 500, statusMessage: err.message }));
+  }
 });
