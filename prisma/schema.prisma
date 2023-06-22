@@ -12,10 +12,10 @@ datasource db {
 
 model User {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
-  email        String   @unique
+  email        String
+  userName     String   @unique
   name         String?
   password     String
-  userName     String?
   profileImage String?
   // refreshToken RefreshToken[]
   // tweet        Tweet[]

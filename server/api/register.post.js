@@ -4,6 +4,12 @@ import createUser from "../db/createUser";
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);
   let { name, password, email, userName } = body;
+  if (!name || !password || !email || !userName) {
+    sendError(
+      event,
+      createError({ status: 500, statusMessage: "invalid data" })
+    );
+  }
   let findUser = await prisma.user.findFirst({
     where: {
       AND: [{ email }],
