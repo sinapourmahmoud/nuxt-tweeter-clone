@@ -1,5 +1,6 @@
 import { prisma } from "../db";
 import bcrypt from "bcrypt";
+import addRefreshToken from "../db/addRefreshToken";
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);
   let { email, password, userName } = body;
@@ -34,8 +35,14 @@ export default defineEventHandler(async (event) => {
         })
       );
     }
+    let { accessToken, refreshToken } = await generateTokens(findUser);
+    let sina = await addRefreshToken({
+      userId: findUser.id,
+      token: refreshToken,
+    });
     return {
       ...findUser,
+      accessToken,
       password: "security",
     };
   } catch (err) {
