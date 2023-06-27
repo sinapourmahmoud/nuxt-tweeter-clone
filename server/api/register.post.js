@@ -1,5 +1,5 @@
 import { prisma } from "../db";
-import createUser from "../db/createUser";
+import createUser from "../utils/createUser";
 
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);

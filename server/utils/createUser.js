@@ -1,4 +1,4 @@
-import { prisma } from ".";
+import { prisma } from "../db";
 import bcrypt from "bcrypt";
 const createUser = async (data) => {
   let addUser = await prisma.user.create({

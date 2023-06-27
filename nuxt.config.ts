@@ -5,6 +5,7 @@ export default defineNuxtConfig({
   alias: {
     "@": resolve(__dirname, "/"),
   },
+  modules: ["@formkit/nuxt"],
   runtimeConfig: {
     jwtAccessToken: process.env.SET_ACCESS_TOKEN_SECRET,
     jwtRefreshToken: process.env.SET_REFRESH_TOKEN_SECRET,

@@ -12,10 +12,28 @@ const generateRefreshToken = async (user) => {
   });
 };
 
+export const decodedToken = async (refreshToken) => {
+  let config = useRuntimeConfig();
+
+  try {
+    return await jwt.verify(refreshToken, config?.jwtRefreshToken);
+  } catch (err) {
+    return null;
+  }
+};
+
+export const decodedAccessToken = async (token) => {
+  let config = useRuntimeConfig();
+
+  try {
+    return await jwt.verify(token, config?.jwtAccessToken);
+  } catch (err) {
+    return null;
+  }
+};
 const generateTokens = async (user) => {
   let accessToken = await generateAccessToken(user);
   let refreshToken = await generateRefreshToken(user);
-  console.log(generateAccessToken);
   return {
     accessToken,
     refreshToken,

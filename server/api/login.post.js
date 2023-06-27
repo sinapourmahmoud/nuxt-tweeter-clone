@@ -1,13 +1,14 @@
 import { prisma } from "../db";
 import bcrypt from "bcrypt";
 import addRefreshToken from "../db/addRefreshToken";
+import sendRefreshToken from "../utils/sendRefreshToken";
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);
-  let { email, password, userName } = body;
-  if (!password || !email) {
+  let { password, userName } = body;
+  if (!password || !userName) {
     sendError(
       event,
-      createError({ status: 500, statusMessage: "invalid data" })
+      createError({ status: 500, statusMessage: "invalid data:)" })
     );
   }
   try {
@@ -36,10 +37,11 @@ export default defineEventHandler(async (event) => {
       );
     }
     let { accessToken, refreshToken } = await generateTokens(findUser);
-    let sina = await addRefreshToken({
+    let addingRefresh = await addRefreshToken({
       userId: findUser.id,
       token: refreshToken,
     });
+    sendRefreshToken(event, refreshToken);
     return {
       ...findUser,
       accessToken,
