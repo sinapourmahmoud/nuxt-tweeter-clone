@@ -1,7 +1,8 @@
 <template>
   <div class="">
     <Header />
-    <TweetForm />
+    <FeedTweetForm />
+    <FeedBodyList />
   </div>
 </template>
 <script setup></script>

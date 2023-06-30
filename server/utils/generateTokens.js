@@ -13,12 +13,12 @@ const generateRefreshToken = async (user) => {
 };
 
 export const decodedToken = async (refreshToken) => {
-  let config = useRuntimeConfig();
+  const config = useRuntimeConfig();
 
   try {
-    return await jwt.verify(refreshToken, config?.jwtRefreshToken);
-  } catch (err) {
-    return null;
+    return await jwt.verify(refreshToken, config.jwtRefreshToken);
+  } catch (error) {
+    console.error(error);
   }
 };
 

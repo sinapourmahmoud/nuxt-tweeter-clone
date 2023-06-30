@@ -1,3 +1,4 @@
+import human from "human-time";
 export const userTransformer = (item) => {
   return {
     ...item,
@@ -14,6 +15,8 @@ export const allTweetsTransformer = (items) => {
           author: userTransformer(reply.author),
         })),
       ],
+      author: userTransformer(item.author),
+      createdAt: human(item.createdAt),
       replyTo: !!item.replyTo
         ? {
             ...item.replyTo,

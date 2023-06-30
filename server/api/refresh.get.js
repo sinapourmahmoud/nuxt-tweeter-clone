@@ -6,7 +6,6 @@ export default defineEventHandler(async (event) => {
   if (!refreshTokenCookie) {
     sendError(event, createError({ status: 500, message: "not have cookie" }));
   }
-
   let rToken = await getRefreshToken(refreshTokenCookie);
   if (!rToken) {
     sendError(event, createError({ status: 500, message: "cookie not found" }));

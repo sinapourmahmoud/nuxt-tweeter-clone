@@ -9,6 +9,7 @@ export default defineEventHandler(async (event) => {
     },
     include: {
       mediaFiles: true,
+      author: true,
       replies: {
         include: {
           author: true,
@@ -19,6 +20,9 @@ export default defineEventHandler(async (event) => {
           author: true,
         },
       },
+    },
+    orderBy: {
+      createdAt: "desc",
     },
   });
   let transformedData = allTweetsTransformer(allTweets);
