@@ -1,5 +1,6 @@
 import { prisma } from "../db";
 import createUser from "../utils/createUser";
+import { userTransformer } from "../utils/transformer";
 
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);
@@ -30,8 +31,7 @@ export default defineEventHandler(async (event) => {
       profileImage: "https://picsum.photos/200/200",
     });
     return {
-      ...createdUser,
-      password: "security ",
+      ...userTransformer(createdUser),
     };
   } catch (err) {
     sendError(event, createError({ status: 500, statusMessage: err.message }));

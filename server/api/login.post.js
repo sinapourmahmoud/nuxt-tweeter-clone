@@ -2,6 +2,7 @@ import { prisma } from "../db";
 import bcrypt from "bcrypt";
 import addRefreshToken from "../db/addRefreshToken";
 import sendRefreshToken from "../utils/sendRefreshToken";
+import { userTransformer } from "../utils/transformer";
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);
   let { password, userName } = body;
@@ -43,9 +44,8 @@ export default defineEventHandler(async (event) => {
     });
     sendRefreshToken(event, refreshToken);
     return {
-      ...findUser,
+      ...userTransformer(findUser),
       accessToken,
-      password: "security",
     };
   } catch (err) {
     sendError(
