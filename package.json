@@ -21,10 +21,14 @@
   "dependencies": {
     "@formkit/nuxt": "^0.17.3",
     "@heroicons/vue": "^2.0.18",
+    "@nuxt/image-edge": "^1.0.0-rc.1-28126030.07836ae",
     "@prisma/client": "^4.15.0",
     "@tailwindcss/forms": "^0.5.3",
     "bcrypt": "^5.1.0",
+    "cloudinary": "^1.37.3",
+    "formidable": "^3.4.0",
     "jsonwebtoken": "^9.0.0",
+    "nuxt-cloudinary": "^0.0.4",
     "url-pattern": "^1.0.3"
   }
 }

@@ -18,9 +18,11 @@
           </div>
         </div>
         <div
-          class="col-start-1 col-end-13 sm:col-start-2 md:col-start-3 sm:col-end-10 h-[300vh] bg-yellow-500"
+          class="col-start-1 col-end-13 sm:col-start-2 md:col-start-3 sm:col-end-10 h-[300vh]"
         >
-          ss
+          <NuxtLayout>
+            <NuxtPage />
+          </NuxtLayout>
         </div>
         <div
           class="col-start-1 col-end-13 sm:col-start-10 sm:col-end-13 h-full"

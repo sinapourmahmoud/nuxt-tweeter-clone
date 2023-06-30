@@ -13,7 +13,7 @@ const textFont = computed(() =>
 <template>
   <NuxtLink
     to="#"
-    class="flex items-center gap-6 hover:bg-gray-200 dark:hover:bg-dim-200 p-3 md:py-2 rounded-full md:rounded-3xl"
+    class="flex items-center md:gap-6 hover:bg-gray-200 dark:hover:bg-dim-200 p-3 md:py-2 rounded-full md:rounded-3xl"
   >
     <div>
       <slot name="icon"></slot>

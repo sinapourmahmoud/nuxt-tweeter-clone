@@ -50,12 +50,12 @@
       </template>
       <template v-slot:title><p class="dark:text-white">More</p></template>
     </SidebarLeftOption>
-    <button
-      :class="defaultTransition"
-      class="bg-blue-400 hover:bg-blue-500 rounded-3xl py-2 text-base font-medium text-white dark:text-dim-300 hidden lg:block"
-    >
-      Tweet
-    </button>
+    <Button
+      type="button"
+      text="Tweet"
+      size="lg"
+      customClass="hidden lg:block"
+    />
   </div>
 </template>
 <script setup>

@@ -36,7 +36,7 @@ const useAuth = () => {
   const refreshUser = async () => {
     try {
       let data = await useFetchApi("/api/user");
-      setUser(data?.userName);
+      setUser(data?.user?.userName);
     } catch (err) {
       setUser(null);
     }
