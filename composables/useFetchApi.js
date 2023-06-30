@@ -7,6 +7,5 @@ export default async (url, options = {}) => {
       Authorization: `Bearer ${useToken().value}`,
     },
   });
-  console.log(data);
   return data;
 };

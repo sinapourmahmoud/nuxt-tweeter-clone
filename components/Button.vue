@@ -32,7 +32,7 @@ let { type, text, size, customClass, disabled } = defineProps({
     required: false,
   },
   disabled: {
-    type: String,
+    type: Boolean,
   },
 });
 

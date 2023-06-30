@@ -119,13 +119,13 @@ const dbLink = ref();
 let inputRef = ref(null);
 const isError = ref(false);
 const isLoading = ref(false);
+
 const clickEvent = () => {
   inputRef.value.click();
 };
 
 const changingFile = (e) => {
   let file = e.target.files[0];
-  console.log(file);
   const reader = new FileReader();
   reader.onload = async (event) => {
     dbLink.value = event.target.result;
@@ -138,14 +138,21 @@ const addTweet = async () => {
     isError.value = true;
   } else {
     isError.value = false;
-    let data = await useFetchApi("/api/tweet", {
-      method: "POST",
-      body: {
-        text: input.value,
-        image: dbLink.value,
-      },
-    });
-    console.log(data);
+    try {
+      let data = await useFetchApi("/api/tweet", {
+        method: "POST",
+        body: {
+          text: input.value,
+          image: dbLink.value,
+        },
+      });
+      alert("added");
+    } catch (err) {
+      alert(err.message);
+    } finally {
+      dbLink.value = "";
+      input.value = "";
+    }
   }
   isLoading.value = false;
 };

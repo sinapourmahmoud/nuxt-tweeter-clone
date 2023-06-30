@@ -18,6 +18,7 @@ export default defineNuxtConfig({
       baseURL: "https://res.cloudinary.com/dxlq8pwwl/image/upload/v1685716173",
     },
   },
+
   css: ["~/assets/css/main.css"],
   postcss: {
     plugins: {
