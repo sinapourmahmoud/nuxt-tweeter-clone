@@ -9,7 +9,7 @@
       :image="data?.mediaFiles[0]?.url"
       :text="data?.text"
       :profile="data?.author?.profileImage"
-      :replyId="data?.replyTo?.id"
+      :replyId="data?.replyToId"
       :replyUserName="data?.replyTo?.author?.userName"
     />
     <FeedTweetForm :replyToId="data?.id" />
@@ -19,12 +19,12 @@
       :name="item?.author?.name"
       :userName="item?.author?.userName"
       :createdAt="item?.createdAt"
-      :id="data?.id"
+      :id="item?.id"
       :image="item?.mediaFiles[0]?.url"
       :text="item?.text"
       :profile="item?.author?.profileImage"
-      :replyId="data?.author?.id"
-      :replyUserName="data?.author?.userName"
+      :replyId="item?.replyToId"
+      :replyUserName="item?.author?.userName"
     />
   </div>
 </template>
@@ -34,9 +34,15 @@ let router = useRoute();
 let { getTweet } = useTweet();
 let param = router.params.id;
 let data = ref(null);
+
 onMounted(async () => {
+  await fetchTweet();
+});
+watch(param, async () => {
+  await fetchTweet();
+});
+const fetchTweet = async () => {
   let result = await getTweet(param);
   data.value = result.data;
-  console.log(data.value);
-});
+};
 </script>

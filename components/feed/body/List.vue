@@ -9,7 +9,7 @@
     :createdAt="data?.createdAt"
     :image="data?.mediaFiles[0]?.url"
     :text="data?.text"
-    :replyId="data?.replyTo?.id"
+    :replyId="data?.replyToId"
     :replyUserName="data?.replyTo?.author?.userName"
   />
 </template>
@@ -18,6 +18,5 @@ let { getDatas } = useGetTweets();
 let items = ref([]);
 onMounted(async () => {
   items.value = await getDatas();
-  console.log(items.value);
 });
 </script>

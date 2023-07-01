@@ -145,7 +145,7 @@ const addTweet = async () => {
   } else {
     isError.value = false;
     try {
-      let data = await useFetchApi("/api/tweet", {
+      let result = await useFetchApi("/api/tweet", {
         method: "POST",
         body: {
           text: input.value,
@@ -153,6 +153,7 @@ const addTweet = async () => {
           replyToId: props.replyToId,
         },
       });
+      useRouter().push(result.data.id);
       alert("added");
     } catch (err) {
       alert(err.message);

@@ -1,6 +1,5 @@
 <template>
-  <Nuxt-link
-    :to="`/tweet/${id}`"
+  <div
     class="flex flex-col border-b gap-5 dark:border-dim-200 p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-dim-300"
     :class="defaultTransition"
   >
@@ -21,6 +20,7 @@
       </div>
     </div>
     <strong
+      @click="redirectPage(replyId)"
       class="text-sm pl-16 font-medium text-gray-500"
       v-if="!!replyUserName"
       >Replayed to :
@@ -28,7 +28,10 @@
         >@ {{ replyUserName }}</small
       >
     </strong>
-    <p class="text-base font-medium pl-16 dark:text-white">
+    <p
+      class="text-base font-medium pl-16 dark:text-white"
+      @click="redirectPage(id)"
+    >
       {{ text }}
     </p>
     <img
@@ -38,7 +41,7 @@
       alt="poster"
     />
     <FeedActions />
-  </Nuxt-link>
+  </div>
 </template>
 
 <script setup>
@@ -81,6 +84,9 @@ let {
     type: String,
   },
 });
-console.log(id);
 let { defaultTransition } = useTailwind();
+const redirectPage = (id) => {
+  console.log(id);
+  useRouter().push(`/tweet/${id}`);
+};
 </script>

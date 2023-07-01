@@ -1,6 +1,7 @@
 import { uploadToCloudinary } from "../utils/uploadImage";
 import createTweet from "../utils/createTweet";
 import createFileMedia from "../utils/createFileMedia";
+import { userTransformer } from "../utils/transformer";
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);
   let { image, text, replyToId } = body;
@@ -21,7 +22,7 @@ export default defineEventHandler(async (event) => {
       });
     }
     return {
-      message: "added",
+      data: userTransformer(data),
     };
   } catch (err) {
     sendError(event, createError({ status: 500, statusMessage: err.message }));
