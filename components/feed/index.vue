@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="h-full">
     <Header />
     <FeedTweetForm />
     <FeedBodyList />

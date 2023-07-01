@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col gap-4 h-full">
+  <div class="flex flex-col gap-4 sm:sticky sm:top-0">
     <form>
       <div
         class="w-full bg-gray-200 dark:bg-white dark:bg-opacity-50 rounded-3xl h-10 flex items-center pl-2"
