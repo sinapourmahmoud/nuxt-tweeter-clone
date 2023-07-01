@@ -113,7 +113,13 @@
 </template>
 <script setup>
 let { defaultTransition } = useTailwind();
-
+let props = defineProps({
+  replyToId: {
+    type: String,
+    required: false,
+    default: null,
+  },
+});
 const input = ref("");
 const dbLink = ref();
 let inputRef = ref(null);
@@ -144,6 +150,7 @@ const addTweet = async () => {
         body: {
           text: input.value,
           image: dbLink.value,
+          replyToId: props.replyToId,
         },
       });
       alert("added");

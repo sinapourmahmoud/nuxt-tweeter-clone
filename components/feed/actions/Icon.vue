@@ -9,7 +9,7 @@
       ></slot>
     </div>
     <p :class="`dark:text-gray-500 group-hover:text-${color}-400 `">
-      <slot>5</slot>
+      <slot>{{ randomNumber }}</slot>
     </p>
   </div>
 </template>
@@ -21,5 +21,8 @@ let { color } = defineProps({
     type: String,
     default: "blue",
   },
+});
+let randomNumber = computed(() => {
+  return Math.floor(Math.random() * 100);
 });
 </script>

@@ -1,4 +1,5 @@
 import getTweet from "../../db/getTweet";
+import { tweetTransformer } from "../../utils/transformer";
 
 export default defineEventHandler(async (event) => {
   let id = event.context.params.id;
@@ -22,7 +23,7 @@ export default defineEventHandler(async (event) => {
       },
     });
     return {
-      data: getFirstTweet,
+      data: tweetTransformer(getFirstTweet),
     };
   } catch (err) {
     sendError(event, { statusCode: 500, statusMessage: err.message });

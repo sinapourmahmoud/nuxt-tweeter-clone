@@ -26,3 +26,25 @@ export const allTweetsTransformer = (items) => {
     })),
   ];
 };
+
+export const tweetTransformer = (item) => {
+  return {
+    ...item,
+    author: userTransformer(item.author),
+    replies: [
+      ...item.replies.map((reply) => ({
+        ...reply,
+        author: userTransformer(reply.author),
+        createdAt: human(reply.createdAt),
+      })),
+    ],
+    createdAt: human(item.createdAt),
+
+    replyTo: !!item.replyTo
+      ? {
+          ...item.replyTo,
+          author: userTransformer(item.replyTo.author),
+        }
+      : null,
+  };
+};

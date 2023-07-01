@@ -81,6 +81,6 @@ let {
     type: String,
   },
 });
-console.log(replyUserName);
+console.log(id);
 let { defaultTransition } = useTailwind();
 </script>
