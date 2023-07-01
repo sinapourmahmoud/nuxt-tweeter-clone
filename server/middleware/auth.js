@@ -3,7 +3,12 @@ import { decodedAccessToken } from "../utils/generateTokens";
 import getUserById from "../db/getUserById";
 export default defineEventHandler(async (event) => {
   const query = getRequestURL(event).pathname;
-  const endpoints = ["/api/user", "/api/tweet", "/api/getTweets"];
+  const endpoints = [
+    "/api/user",
+    "/api/tweet",
+    "/api/getTweets",
+    "/api/tweet/:id",
+  ];
   const isHandeled = endpoints.some((endpoint) => {
     const pattern = new UrlPattern(endpoint);
     return pattern.match(query);
