@@ -71,9 +71,10 @@ import {
   EllipsisHorizontalCircleIcon,
 } from "@heroicons/vue/24/outline";
 const { defaultTransition } = useTailwind();
-let { openToggle } = useModalVariables();
+let { openToggle, toggleValue } = useModalVariables();
 
 const handleClick = () => {
+  toggleValue.value = null;
   openToggle.value = true;
 };
 </script>

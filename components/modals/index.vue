@@ -29,7 +29,21 @@
             <DialogPanel
               class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white p-6 text-left align-middle shadow-xl transition-all"
             >
-              <FeedTweetForm :fromModal="true" :replyId="toggleValue" />
+              <FeedBodyItem
+                v-if="!!toggleValue"
+                :id="toggleValue?.id"
+                :key="toggleValue?.id"
+                :name="toggleValue?.name"
+                :profile="toggleValue?.profile"
+                :userName="toggleValue?.userName"
+                :createdAt="toggleValue?.createdAt"
+                :image="toggleValue?.image"
+                :text="toggleValue?.text"
+                :replyId="toggleValue?.replyId"
+                :replyUserName="toggleValue?.replyUserName"
+                :fromModal="true"
+              />
+              <FeedTweetForm :fromModal="true" :replyToId="toggleValue?.id" />
             </DialogPanel>
           </TransitionChild>
         </div>
@@ -45,8 +59,8 @@ import {
   Dialog,
   DialogPanel,
 } from "@headlessui/vue";
-
 let { openToggle, toggleValue } = useModalVariables();
+console.log(toggleValue.value.id);
 
 function closeModal() {
   openToggle.value = false;

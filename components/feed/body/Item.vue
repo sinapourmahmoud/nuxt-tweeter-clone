@@ -1,7 +1,8 @@
 <template>
   <div
-    class="flex flex-col border-b gap-5 dark:border-dim-200 p-4 cursor-pointer hover:bg-gray-100 dark:hover:bg-dim-300"
-    :class="defaultTransition"
+    :class="`flex flex-col  gap-5  p-4 cursor-pointer hover:bg-gray-100  dark:hover:bg-dim-300 ${defaultTransition} ${
+      fromModal ? 'my-3 rounded-xl' : 'border-b dark:border-dim-200'
+    }`"
   >
     <div class="flex gap-6">
       <img
@@ -40,7 +41,19 @@
       v-if="image"
       alt="poster"
     />
-    <FeedActions :id="id" />
+    <FeedActions
+      :data="{
+        name,
+        userName,
+        createdAt,
+        id,
+        image,
+        text,
+        profile,
+        replyId,
+        replyUserName,
+      }"
+    />
   </div>
 </template>
 
@@ -55,6 +68,7 @@ let {
   profile,
   replyId,
   replyUserName,
+  fromModal,
 } = defineProps({
   name: {
     type: String,
@@ -71,6 +85,7 @@ let {
   replyUserName: {
     type: String,
   },
+  fromModal: { type: Boolean, default: false },
   userName: {
     type: String,
   },

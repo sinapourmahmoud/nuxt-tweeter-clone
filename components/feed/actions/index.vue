@@ -30,14 +30,14 @@ import {
   HeartIcon,
 } from "@heroicons/vue/24/outline";
 let { toggleValue, openToggle } = useModalVariables();
-let { id } = defineProps({
-  id: {
-    type: String,
+let { data } = defineProps({
+  data: {
+    type: Object,
   },
 });
 
 const handleClick = () => {
   openToggle.value = true;
-  toggleValue.valu = id;
+  toggleValue.value = data;
 };
 </script>
