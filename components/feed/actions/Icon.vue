@@ -1,5 +1,5 @@
 <template>
-  <div class="group flex items-center gap-1">
+  <div class="group flex items-center gap-1" @click.prevent="$emit('clicked')">
     <div
       :class="`${defaultTransition} flex items-center justify-center p-2 text-gray-500 rounded-full group-hover:bg-${color}-200 dark:group-hover:bg-${color}-400`"
     >
@@ -16,6 +16,7 @@
 
 <script setup>
 let { defaultTransition } = useTailwind();
+let emit = defineEmits(["clicked"]);
 let { color } = defineProps({
   color: {
     type: String,

@@ -1,7 +1,9 @@
 <template>
   <form @submit.prevent="addTweet">
     <div
-      class="flex flex-col border-b my-5 gap-5 dark:border-dim-200 rounded-md py-2 px-4"
+      :class="`flex flex-col  gap-5  rounded-md   ${
+        !props.fromModal && 'border-b my-5 dark:border-dim-200 py-2 px-4'
+      }`"
     >
       <div class="flex gap-5">
         <img
@@ -98,7 +100,13 @@
               </g>
             </svg>
           </div>
-          <Button type="submit" text="Tweet" size="sm" :disabled="isLoading" />
+          <Button
+            type="submit"
+            text="Tweet"
+            size="sm"
+            :disabled="isLoading"
+            @clicked="addTweet"
+          />
         </div>
         <input
           type="file"
@@ -119,13 +127,17 @@ let props = defineProps({
     required: false,
     default: null,
   },
+  fromModal: {
+    type: Boolean,
+    default: false,
+  },
 });
 const input = ref("");
 const dbLink = ref();
 let inputRef = ref(null);
 const isError = ref(false);
 const isLoading = ref(false);
-
+let { openToggle } = useModalVariables();
 const clickEvent = () => {
   inputRef.value.click();
 };
@@ -139,6 +151,7 @@ const changingFile = (e) => {
   reader.readAsDataURL(file);
 };
 const addTweet = async () => {
+  console.log("salam");
   isLoading.value = true;
   if (!input.value) {
     isError.value = true;
@@ -153,7 +166,8 @@ const addTweet = async () => {
           replyToId: props.replyToId,
         },
       });
-      useRouter().push(result.data.id);
+      openToggle.value = false;
+      useRouter().push(`/tweet/${result.data.id}`);
       alert("added");
     } catch (err) {
       alert(err.message);

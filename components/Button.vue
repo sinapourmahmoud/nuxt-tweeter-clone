@@ -1,5 +1,6 @@
 <template>
   <button
+    @click.prevent="$emit('clicked')"
     :type="type"
     :class="`${defaultTransition} ${sizehandler} ${customClass}`"
     :disabled="disabled"
@@ -10,6 +11,7 @@
 </template>
 <script setup>
 let { defaultTransition } = useTailwind();
+let emit = defineEmits(["clicked"]);
 let { type, text, size, customClass, disabled } = defineProps({
   type: {
     type: String,

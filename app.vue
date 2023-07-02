@@ -25,12 +25,14 @@
         </div>
       </div>
       <Login v-else />
+      <Modals v-if="openToggle" />
     </div>
   </div>
 </template>
 <script setup>
 let darkMode = ref(false);
 let { useUser, initAuth, isloading } = useAuth();
+let { openToggle, toggleValue } = useModalVariables();
 let user = useUser();
 let loading = isloading();
 

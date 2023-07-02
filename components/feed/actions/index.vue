@@ -1,6 +1,6 @@
 <template>
   <div class="flex items-center justify-evenly mt-3">
-    <FeedActionsIcon color="blue">
+    <FeedActionsIcon color="blue" @clicked="handleClick">
       <template v-slot:icon="{ classes }">
         <ChatBubbleLeftIcon :class="classes" />
       </template>
@@ -29,4 +29,15 @@ import {
   ArrowDownTrayIcon,
   HeartIcon,
 } from "@heroicons/vue/24/outline";
+let { toggleValue, openToggle } = useModalVariables();
+let { id } = defineProps({
+  id: {
+    type: String,
+  },
+});
+
+const handleClick = () => {
+  openToggle.value = true;
+  toggleValue.valu = id;
+};
 </script>

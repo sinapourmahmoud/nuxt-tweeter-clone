@@ -17,8 +17,8 @@
         <BellIcon class="w-6 dark:text-white" />
       </template>
       <template v-slot:title
-        ><p class="dark:text-white">Notifications</p></template
-      >
+        ><p class="dark:text-white">Notifications</p>
+      </template>
     </SidebarLeftOption>
     <SidebarLeftOption>
       <template v-slot:icon>
@@ -51,6 +51,7 @@
       <template v-slot:title><p class="dark:text-white">More</p></template>
     </SidebarLeftOption>
     <Button
+      @clicked="handleClick"
       type="button"
       text="Tweet"
       size="lg"
@@ -70,4 +71,9 @@ import {
   EllipsisHorizontalCircleIcon,
 } from "@heroicons/vue/24/outline";
 const { defaultTransition } = useTailwind();
+let { openToggle } = useModalVariables();
+
+const handleClick = () => {
+  openToggle.value = true;
+};
 </script>

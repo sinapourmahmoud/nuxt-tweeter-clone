@@ -14,6 +14,7 @@
     "@types/node": "^18",
     "autoprefixer": "^10.4.14",
     "nuxt": "^3.5.2",
+    "nuxt-headlessui": "^1.1.4",
     "postcss": "^8.4.24",
     "prisma": "^4.15.0",
     "tailwindcss": "^3.3.2"

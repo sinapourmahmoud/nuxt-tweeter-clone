@@ -40,7 +40,7 @@
       v-if="image"
       alt="poster"
     />
-    <FeedActions />
+    <FeedActions :id="id" />
   </div>
 </template>
 
@@ -86,7 +86,6 @@ let {
 });
 let { defaultTransition } = useTailwind();
 const redirectPage = (id) => {
-  console.log(id);
   useRouter().push(`/tweet/${id}`);
 };
 </script>

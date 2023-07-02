@@ -5,4 +5,3 @@
     <FeedBodyList />
   </div>
 </template>
-<script setup></script>
