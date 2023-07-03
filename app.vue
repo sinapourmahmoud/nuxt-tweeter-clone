@@ -1,9 +1,5 @@
 <template>
-  <div :class="{ dark: darkMode }">
-    <div
-      class="fixed top-4 left-2 w-6 h-6 bg-red-500"
-      @click="darkMode = !darkMode"
-    ></div>
+  <div :class="{ dark: darkToggle }">
     <div class="dark:bg-dim-400 bg-white h-screen overflow-auto">
       <Loading v-if="loading" />
       <div
@@ -30,9 +26,9 @@
   </div>
 </template>
 <script setup>
-let darkMode = ref(false);
 let { useUser, initAuth, isloading } = useAuth();
-let { openToggle, toggleValue } = useModalVariables();
+let { openToggle } = useModalVariables();
+let { darkToggle } = useTailwind();
 let user = useUser();
 let loading = isloading();
 

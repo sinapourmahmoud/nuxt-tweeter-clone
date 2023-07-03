@@ -22,6 +22,7 @@
       :items="hashtags"
     />
     <SidebarRightBox title="Who to follow" :fromFollow="true" :items="people" />
+    <Footer />
   </div>
 </template>
 

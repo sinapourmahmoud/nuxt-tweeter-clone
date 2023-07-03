@@ -51,8 +51,17 @@ const useAuth = () => {
       isloading().value = false;
     }
   };
-
+  const logout = async () => {
+    try {
+      let data = await $fetch("/api/logout");
+      setToken(null);
+      setUser(null);
+    } catch (err) {
+      console.log(err);
+    }
+  };
   return {
+    logout,
     login,
     isloading,
     useUser,

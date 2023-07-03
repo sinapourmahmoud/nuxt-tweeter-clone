@@ -154,7 +154,6 @@ const changingFile = (e) => {
   reader.readAsDataURL(file);
 };
 const addTweet = async () => {
-  console.log("salam");
   isLoading.value = true;
   if (!input.value) {
     isError.value = true;

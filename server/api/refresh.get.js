@@ -10,8 +10,7 @@ export default defineEventHandler(async (event) => {
   if (!rToken) {
     sendError(event, createError({ status: 500, message: "cookie not found" }));
   }
-  const token = await decodedToken(refreshTokenCookie);
-
+  const token = await decodedToken(rToken.token);
   try {
     let user = await getUserById(token?.id);
     const { accessToken } = await generateTokens(user);

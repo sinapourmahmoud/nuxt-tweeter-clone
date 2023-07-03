@@ -1,6 +1,6 @@
 import { prisma } from ".";
 const getRefreshToken = async (token) => {
-  let data = await prisma.refreshToken.findUnique({
+  let data = await prisma.refreshToken.findFirst({
     where: {
       token,
     },
