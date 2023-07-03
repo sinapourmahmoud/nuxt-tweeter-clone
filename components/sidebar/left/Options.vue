@@ -74,8 +74,8 @@
           class="w-10 h-10 rounded-full object-cover"
         />
         <div class="flex flex-col gap-0.5">
-          <p class="text-base font-bold dark:text-white">Sina</p>
-          <p class="text-sm font-light dark:text-white/75">Sina</p>
+          <p class="text-base font-bold dark:text-white">{{ user }}</p>
+          <p class="text-sm font-light dark:text-white/75">Logout</p>
         </div>
       </div>
       <ChevronDownIcon class="w-5 h-5 dark:text-white" />
@@ -102,4 +102,6 @@ const handleClick = () => {
   openToggle.value = true;
 };
 let { logout } = useAuth();
+let { useUser } = useAuth();
+let user = useUser();
 </script>
