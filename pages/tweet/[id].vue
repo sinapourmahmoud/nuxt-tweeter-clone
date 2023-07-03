@@ -2,6 +2,7 @@
   <div>
     <Header :title="`Tweet of ${data?.author?.name}`" />
     <FeedBodyItem
+      v-if="!loading"
       :name="data?.author?.name"
       :userName="data?.author?.userName"
       :createdAt="data?.createdAt"
@@ -13,6 +14,9 @@
       :replyUserName="data?.replyTo?.author?.userName"
     />
     <FeedTweetForm :replyToId="data?.id" />
+    <div class="w-full flex items-center justify-center" v-show="loading">
+      <Spinner />
+    </div>
     <FeedBodyItem
       v-for="item in data?.replies"
       :key="item?.id"
@@ -34,7 +38,7 @@ let router = useRoute();
 let { getTweet } = useTweet();
 let param = router.params.id;
 let data = ref(null);
-
+let loading = ref(false);
 onMounted(async () => {
   await fetchTweet();
 });
@@ -42,7 +46,9 @@ watch(router.fullPath, async () => {
   await fetchTweet();
 });
 const fetchTweet = async () => {
+  loading.value = true;
   let result = await getTweet(param);
+  loading.value = false;
   data.value = result.data;
 };
 </script>

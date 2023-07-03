@@ -1,5 +1,8 @@
 <template>
   <form @submit.prevent="addTweet">
+    <div class="w-full flex items-center justify-center" v-show="isLoading">
+      <Spinner />
+    </div>
     <div
       :class="`flex flex-col  gap-5  rounded-md   ${
         !props.fromModal && 'border-b my-5 dark:border-dim-200 py-2 px-4'
