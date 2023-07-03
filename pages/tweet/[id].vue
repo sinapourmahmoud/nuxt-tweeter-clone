@@ -38,7 +38,7 @@ let data = ref(null);
 onMounted(async () => {
   await fetchTweet();
 });
-watch(param, async () => {
+watch(router.fullPath, async () => {
   await fetchTweet();
 });
 const fetchTweet = async () => {

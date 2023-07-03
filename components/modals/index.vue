@@ -60,7 +60,6 @@ import {
   DialogPanel,
 } from "@headlessui/vue";
 let { openToggle, toggleValue } = useModalVariables();
-console.log(toggleValue.value.id);
 
 function closeModal() {
   openToggle.value = false;

@@ -15,8 +15,9 @@
 </template>
 <script setup>
 let { getDatas } = useGetTweets();
+let id = useRoute().params.id;
 let items = ref([]);
 onMounted(async () => {
-  items.value = await getDatas();
+  items.value = await getDatas(id);
 });
 </script>

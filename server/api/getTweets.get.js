@@ -3,7 +3,8 @@ import { allTweetsTransformer } from "../utils/transformer";
 
 export default defineEventHandler(async (event) => {
   let { id, userName } = event.context.auth;
-  let allTweets = await getTweets({
+  let { search } = getQuery(event);
+  let provider = {
     where: {
       authorId: id,
     },
@@ -24,7 +25,19 @@ export default defineEventHandler(async (event) => {
     orderBy: {
       createdAt: "desc",
     },
-  });
+  };
+  if (search) {
+    provider = {
+      ...provider,
+      where: {
+        ...provider.where,
+        text: {
+          contains: search,
+        },
+      },
+    };
+  }
+  let allTweets = await getTweets({ ...provider });
   let transformedData = allTweetsTransformer(allTweets);
   return {
     data: transformedData,
