@@ -1,4 +1,8 @@
 <template>
+  <Head>
+    <Title>Tweet/{{ data?.author?.name || "" }}</Title>
+    <Meta name="description" content="Sina s Tweeter clone" />
+  </Head>
   <div>
     <Header :title="`Tweet of ${data?.author?.name}`" />
     <FeedBodyItem
