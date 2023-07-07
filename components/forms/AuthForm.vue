@@ -38,18 +38,30 @@
   </FormKit>
 </template>
 <script setup>
-let { login } = useAuth();
+let { login, register } = useAuth();
 let { isLogin } = defineProps({
   isLogin: {
     type: Boolean,
   },
 });
+let emit = defineEmits(["changeStatus"]);
 
 //submit
-const handleSubmit = (event) => {
+const handleSubmit = async (event) => {
   if (isLogin) {
-    login(event.username, event.password);
+    console.log("salam");
+    await login(event.username, event.password);
   } else {
+    await $fetch("/api/register", {
+      method: "POST",
+      body: {
+        name: event.name,
+        userName: event.userName,
+        password: event.password,
+        email: event.email,
+      },
+    });
+    emit("changeStatus");
   }
 };
 </script>

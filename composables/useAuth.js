@@ -51,6 +51,7 @@ const useAuth = () => {
       isloading().value = false;
     }
   };
+
   const logout = async () => {
     try {
       let data = await $fetch("/api/logout");
@@ -60,7 +61,21 @@ const useAuth = () => {
       console.log(err);
     }
   };
+  const register = async (name, password, email, userName) => {
+    console.log("register");
+    let data = await $fetch("/api/register", {
+      method: "POST",
+      body: {
+        name,
+        password,
+        email,
+        userName,
+      },
+    });
+    return data;
+  };
   return {
+    register,
     logout,
     login,
     isloading,

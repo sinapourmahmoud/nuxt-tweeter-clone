@@ -5,6 +5,7 @@ import { userTransformer } from "../utils/transformer";
 export default defineEventHandler(async (event) => {
   let body = await readBody(event);
   let { name, password, email, userName } = body;
+  console.log(name, password, email, userName);
   if (!name || !password || !email || !userName) {
     sendError(
       event,
